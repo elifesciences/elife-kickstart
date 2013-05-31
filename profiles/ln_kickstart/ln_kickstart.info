@@ -1,0 +1,64 @@
+name = Commerce Kickstart
+description = Install with Drupal Commerce pre-configured for use.
+core = 7.x
+distribution_name = Commerce Kickstart
+exclusive = 1
+
+; Install necessary core modules.
+dependencies[] = block
+dependencies[] = comment
+dependencies[] = contextual
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = taxonomy
+dependencies[] = dblog
+dependencies[] = overlay
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = toolbar
+
+; Install contribs.
+dependencies[] = addressfield
+dependencies[] = ctools
+dependencies[] = entity
+dependencies[] = entity_token
+dependencies[] = rules
+dependencies[] = rules_admin
+dependencies[] = views
+dependencies[] = views_ui
+dependencies[] = chosen
+dependencies[] = crumbs
+dependencies[] = module_filter
+dependencies[] = image_delta_formatter
+dependencies[] = taxonomy_menu
+dependencies[] = libraries
+dependencies[] = mimemail_compress
+dependencies[] = pathauto
+dependencies[] = inline_entity_form
+dependencies[] = entityreference
+dependencies[] = menu_attributes
+dependencies[] = fences
+dependencies[] = title
+
+; Install Features
+dependencies[] = features
+
+; Install Migrate
+dependencies[] = migrate
+
+; Install Search API
+dependencies[] = facetapi
+dependencies[] = search_api
+dependencies[] = search_api_db
+dependencies[] = search_api_views
+dependencies[] = search_api_facetapi
+dependencies[] = search_api_ranges
+
+; Distribution modules.
+
+; System Requirements.
+php_memory_limit = 128M
