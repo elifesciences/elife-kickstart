@@ -1,7 +1,7 @@
-name = Commerce Kickstart
-description = Install with Drupal Commerce pre-configured for use.
+name = LN Kickstart
+description = Install with Drupal pre-configured for use.
 core = 7.x
-distribution_name = Commerce Kickstart
+distribution_name = LN Kickstart
 exclusive = 1
 
 ; Install necessary core modules.
@@ -15,43 +15,96 @@ dependencies[] = number
 dependencies[] = options
 dependencies[] = path
 dependencies[] = taxonomy
-dependencies[] = dblog
-dependencies[] = overlay
 dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = toolbar
 
+; Install devel modules.
+dependencies[] = dblog
+dependencies[] = rules_admin
+dependencies[] = views_ui
+dependencies[] = devel
+dependencies[] = admin_menu
+dependencies[] = admin_menu_toolbar
+dependencies[] = context_ui
+dependencies[] = environment_indicator
+dependencies[] = hacked
+dependencies[] = ds_ui
+dependencies[] = diff
+dependencies[] = styleguide
+dependencies[] = delta_ui
+
+; Install Migrate
+dependencies[] = migrate
+dependencies[] = migrate_extras
+dependencies[] = migrate_d2d
+dependencies[] = date_migrate
+
 ; Install contribs.
-dependencies[] = addressfield
 dependencies[] = ctools
+dependencies[] = context_nopremium
+dependencies[] = dfp
+dependencies[] = dfp_ad_blocks
+dependencies[] = ds
+dependencies[] = ds_extras
+dependencies[] = ds_format
+dependencies[] = fcf
+dependencies[] = date
+dependencies[] = date_api
+dependencies[] = date_popup
+dependencies[] = date_views
+dependencies[] = context
+dependencies[] = context_condition_theme
 dependencies[] = entity
 dependencies[] = entity_token
+dependencies[] = token
+dependencies[] = field_group
 dependencies[] = rules
-dependencies[] = rules_admin
 dependencies[] = views
-dependencies[] = views_ui
-dependencies[] = chosen
-dependencies[] = crumbs
-dependencies[] = module_filter
-dependencies[] = image_delta_formatter
-dependencies[] = taxonomy_menu
 dependencies[] = libraries
-dependencies[] = mimemail_compress
+dependencies[] = module_filter
 dependencies[] = pathauto
-dependencies[] = inline_entity_form
 dependencies[] = entityreference
 dependencies[] = menu_attributes
-dependencies[] = fences
-dependencies[] = title
+dependencies[] = imce
+dependencies[] = metatag
+dependencies[] = boxes
+dependencies[] = colorbox
+dependencies[] = elysia_cron
+dependencies[] = menu_token
+dependencies[] = clone
+dependencies[] = nopremium
+dependencies[] = publication_date
+dependencies[] = realname
+dependencies[] = redirect
+dependencies[] = resp_img
+dependencies[] = scheduler
+dependencies[] = special_menu_items
+dependencies[] = globalredirect
+dependencies[] = addthis
+dependencies[] = addthis_displays
+dependencies[] = captcha
+dependencies[] = googleanalytics
+dependencies[] = delta
+dependencies[] = ckeditor
+dependencies[] = views_field_view
+dependencies[] = views_slideshow
+dependencies[] = views_slideshow_cycle
+dependencies[] = webform
+dependencies[] = webform_rules
+dependencies[] = webform_validation
+dependencies[] = xmlsitemap
+dependencies[] = strongarm
+
+; Install sandbox modules.
+dependencies[] = webform_validate_unique_user_email
 
 ; Install Features
 dependencies[] = features
 
-; Install Migrate
-dependencies[] = migrate
-
 ; Install Search API
 dependencies[] = facetapi
+dependencies[] = facetapi_bonus
 dependencies[] = search_api
 dependencies[] = search_api_db
 dependencies[] = search_api_views
