@@ -40,21 +40,21 @@ function _{PROFILE_CODE}_flush_caches($operation, &$context) {
 /**
  * BatchAPI callback.
  *
- * @see commerce_kickstart_import_content()
+ * @see {PROFILE_CODE}_import_content()
  */
-function _commerce_kickstart_taxonomy_menu($operation, &$context) {
+function _{PROFILE_CODE}_taxonomy_menu($operation, &$context) {
   $context['message'] = t('@operation', array('@operation' => $operation));
 
 
   // Set up taxonomy main menu.
-  $vocabulary_machine_name = variable_get('commerce_kickstart_demo_store', FALSE) ? 'collection' : 'product_category';
+  $vocabulary_machine_name = variable_get('{PROFILE_CODE}_demo_store', FALSE) ? 'collection' : 'product_category';
   if ($collection = taxonomy_vocabulary_machine_name_load($vocabulary_machine_name)) {
     $variable_name = _taxonomy_menu_build_variable('vocab_menu', $collection->vid);
     variable_set($variable_name, 'main-menu');
     $variable_name = _taxonomy_menu_build_variable('vocab_parent', $collection->vid);
     variable_set($variable_name, '0');
     $variable_name = _taxonomy_menu_build_variable('path', $collection->vid);
-    variable_set($variable_name, 'commerce_kickstart_taxonomy_term_path');
+    variable_set($variable_name, '{PROFILE_CODE}_taxonomy_term_path');
     $variable_name = _taxonomy_menu_build_variable('rebuild', $collection->vid);
     variable_set($variable_name, 1);
   }

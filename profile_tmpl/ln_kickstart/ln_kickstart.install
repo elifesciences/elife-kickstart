@@ -113,7 +113,7 @@ function install_welcome_submit($form, &$form_state) {
  *
  * Any modules providing custom blocks should be enabled here, and not before
  * (as an install profile dependency), because the themes are setup during
- * commerce_kickstart_install(), which means region assignment can only happen
+ * {PROFILE_CODE}_install(), which means region assignment can only happen
  * after that.
  */
 function {PROFILE_CODE}_install_additional_modules() {
