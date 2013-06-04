@@ -27,7 +27,7 @@ if [ -d profile_tmpl ] && [ -d profile_tmpl/ln_kickstart ]; then
   cp -r profile_tmpl profile_tmp
   cd profile_tmp/ln_kickstart
 
-  for file in $ln_*
+  for file in ln_*
   do
     mv "$file" "${PROFILE_CODE}_${file#ln_}"
     sed -i "" "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "${PROFILE_CODE}_${file#ln_}"
