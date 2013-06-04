@@ -49,6 +49,8 @@ usage() {
   exit 1
 }
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 profiles_folder=false
 if [ -d profiles ]; then
   profiles_folder=true
@@ -116,6 +118,7 @@ fi
 
 # Build the profile.
 echo "Building the profile..."
+rm -rf tmp
 drush make --no-cache --no-core --contrib-destination drupal-org.make tmp
 if [ -d sites_all ]; then
   cp -r sites_all/* tmp
@@ -131,30 +134,8 @@ EOF
 fi
 
 # Prepare the install profile.
-if [ $PROFILE_NAME != "x" ] && [ -d profile_tmpl ] && [ -d profile_tmpl/ln_kickstart ]; then
-  echo "Preparing install profile ${PROFILE_CODE}_kickstart..."
-  if [ ! -d profiles ]; then
-    mkdir profiles
-  fi
-  rm -rf profile_tmp
-  cp -r profile_tmpl profile_tmp
-  cd profile_tmp/ln_kickstart
-
-  for file in $ln_*
-  do
-    mv "$file" "${PROFILE_CODE}_${file#ln_}"
-    sed -i "" "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "${PROFILE_CODE}_${file#ln_}"
-    sed -i "" "s/{PROFILE_CODE}/${PROFILE_CODE}_kickstart/g" "${PROFILE_CODE}_${file#ln_}"
-  done
-
-  # now do search and replace in all files for {PROFILE_NAME} and {PROFILE_CODE}
-  cd ..
-  rm -rf ../profiles/${PROFILE_CODE}_kickstart
-  echo "Creating install profile ${PROFILE_CODE}_kickstart..."
-  rm -rf profiles/${PROFILE_CODE}_kickstart
-  mv ln_kickstart ../profiles/${PROFILE_CODE}_kickstart
-  cd ..
-  rm -rf profile_tmp
+if [ $PROFILE_NAME != "x" ]; then
+  . ${DIR}/build_profile.sh $PROFILE_NAME $PROFILE_CODE
 fi
 
 # Build the distribution and copy the profile in place.
@@ -166,7 +147,7 @@ rm -rf tmp
 if [ -d profiles ]; then
   cp -r profiles/* $TEMP_BUILD/profiles
   rm -rf profiles/${PROFILE_CODE}_kickstart
-  if $profiles_folder; then
+  if [ $profiles_folder == false ]; then
     rm -rf profiles
   fi
 fi
