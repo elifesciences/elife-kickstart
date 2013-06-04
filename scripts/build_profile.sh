@@ -30,8 +30,12 @@ if [ -d profile_tmpl ] && [ -d profile_tmpl/ln_kickstart ]; then
   for file in ln_*
   do
     mv "$file" "${PROFILE_CODE}_${file#ln_}"
-    sed -i "" "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "${PROFILE_CODE}_${file#ln_}"
-    sed -i "" "s/{PROFILE_CODE}/${PROFILE_CODE}_kickstart/g" "${PROFILE_CODE}_${file#ln_}"
+  done
+
+  for file in *
+  do
+    sed -i "" "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "$file"
+    sed -i "" "s/{PROFILE_CODE}/${PROFILE_CODE}_kickstart/g" "$file"
   done
 
   # now do search and replace in all files for {PROFILE_NAME} and {PROFILE_CODE}
