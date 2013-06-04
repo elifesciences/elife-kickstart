@@ -7,10 +7,15 @@ set -e
 # Usage: scripts/build_profile.sh <profile_name> <profile_code> from the profile main directory.
 #
 
-profile_name_def="LN"
-profile_code_def="ln"
+codeprepare () {
+  INPUT=$1
+  echo $INPUT | tr A-Z a-z | sed -e 's/[^a-zA-Z0-9\-]/_/g'
+}
 
+profile_name_def="LN"
 PROFILE_NAME=${1:-${profile_name_def}}
+
+profile_code_def=$( codeprepare $PROFILE_NAME )
 PROFILE_CODE=${2:-${profile_code_def}}
 
 if [ -d profile_tmpl ] && [ -d profile_tmpl/ln_kickstart ]; then

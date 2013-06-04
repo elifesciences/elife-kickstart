@@ -19,6 +19,11 @@ confirm () {
   esac
 }
 
+codeprepare () {
+  INPUT=$1
+  echo $INPUT | tr A-Z a-z | sed -e 's/[^a-zA-Z0-9\-]/_/g'
+}
+
 # Figure out directory real path.
 realpath () {
   TARGET_FILE=$1
@@ -44,16 +49,16 @@ usage() {
   exit 1
 }
 
-profiles_folder=0
+profiles_folder=false
 if [ -d profiles ]; then
-  profiles_folder=1
+  profiles_folder=true
 fi
 
 profile_name_def="LN"
-profile_code_def="ln"
 
 DESTINATION=$1
 PROFILE_NAME=${2:-${profile_name_def}}
+profile_code_def=$( codeprepare $PROFILE_NAME )
 PROFILE_CODE=${3:-${profile_code_def}}
 ASK=true
 
@@ -62,6 +67,7 @@ while getopts ":y" opt; do
     y)
       DESTINATION=$2
       PROFILE_NAME=${3:-${profile_name_def}}
+      profile_code_def=$( echo $PROFILE_NAME | tr -s '[:upper:]' '[:lower:]')
       PROFILE_CODE=${4:-${profile_code_def}}
       ASK=false
       ;;
@@ -160,7 +166,7 @@ rm -rf tmp
 if [ -d profiles ]; then
   cp -r profiles/* $TEMP_BUILD/profiles
   rm -rf profiles/${PROFILE_CODE}_kickstart
-  if [ $profiles_folder -eq 0 ]; then
+  if $profiles_folder; then
     rm -rf profiles
   fi
 fi
