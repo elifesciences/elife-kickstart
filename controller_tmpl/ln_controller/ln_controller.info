@@ -1,0 +1,5 @@
+name = "{PROFILE_NAME} Controller"
+description = "Controller module to handle enabling/disabling of modules and reverting features amongst other things"
+core = 7.x
+package = {PROFILE_NAME}
+
