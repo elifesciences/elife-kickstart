@@ -44,12 +44,13 @@ if [ ! -d sites_all/modules/custom/${PROFILE_CODE}_controller ] && [ -d controll
 
   cd ../..
   echo "Creating controller module for ${PROFILE_CODE}_kickstart..."
-  mv controller_tmp/ln_controller sites_all/modules/custom/${PROFILE_CODE}_controller
+  mv controller_tmp/ln_controller $MODULE_DIR/${PROFILE_CODE}_controller
   rm -rf controller_tmp
 
   if [ -f $PROFILE_INFO ]; then
     DEPENDENCY=`grep -n "^[ ]*dependencies[ ]*\[\][ ]*=[ ]*${PROFILE_CODE}_controller[ ]*$" $PROFILE_INFO | cut -f1 -d: | head -n 1`
     if [ ! $DEPENDENCY ]; then
+    # look for marker to insert the controller module dependency
       DEPENDENCY_MARKER=`grep -n "^[ ]*\;[ ]*Install Controller module[ ]*$" $PROFILE_INFO | cut -f1 -d: | head -n 1`
       DEPENDENCY_TEXT="dependencies[] = ${PROFILE_CODE}_controller"
       if [ $DEPENDENCY_MARKER ]; then
