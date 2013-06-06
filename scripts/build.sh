@@ -69,7 +69,7 @@ while getopts ":y" opt; do
     y)
       DESTINATION=$2
       PROFILE_NAME=${3:-${profile_name_def}}
-      profile_code_def=$( echo $PROFILE_NAME | tr -s '[:upper:]' '[:lower:]')
+      profile_code_def=$( codeprepare $PROFILE_NAME )
       PROFILE_CODE=${4:-${profile_code_def}}
       ASK=false
       ;;
