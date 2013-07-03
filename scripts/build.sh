@@ -21,7 +21,7 @@ confirm () {
 
 codeprepare () {
   INPUT=$1
-  echo $INPUT | tr A-Z a-z | sed -e 's/[^a-zA-Z0-9\-]/_/g'
+  echo "${INPUT}" | tr A-Z a-z | sed -e 's/[^a-zA-Z0-9\-]/_/g'
 }
 
 # Figure out directory real path.
@@ -60,7 +60,7 @@ profile_name_def="LN"
 
 DESTINATION=$1
 PROFILE_NAME=${2:-${profile_name_def}}
-profile_code_def=$( codeprepare $PROFILE_NAME )
+profile_code_def=$( codeprepare "${PROFILE_NAME}" )
 PROFILE_CODE=${3:-${profile_code_def}}
 ASK=true
 
@@ -134,9 +134,9 @@ EOF
 fi
 
 # Prepare the install profile.
-if [ $PROFILE_NAME != "x" ]; then
-  . ${DIR}/build_profile.sh $PROFILE_NAME $PROFILE_CODE
-  . ${DIR}/build_controller.sh $PROFILE_NAME $PROFILE_CODE tmp/modules/custom
+if [ "${PROFILE_NAME}" != "x" ]; then
+  . ${DIR}/build_profile.sh "${PROFILE_NAME}" "${PROFILE_CODE}"
+  . ${DIR}/build_controller.sh "${PROFILE_NAME}" "${PROFILE_CODE}" "tmp/modules/custom"
 fi
 
 # Build the distribution and copy the profile in place.
