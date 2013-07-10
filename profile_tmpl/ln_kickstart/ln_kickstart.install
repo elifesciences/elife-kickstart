@@ -83,7 +83,7 @@ function _{PROFILE_CODE}_set_theme($target_theme) {
  */
 function install_welcome($form, &$form_state, &$install_state) {
   drupal_set_title(st('Welcome'));
-  $message = '<p>' . st('Thank you for choosing LN Kickstart, a product offered by LexisNexis.') . '</p>';
+  $message = '<p>' . st('Thank you for choosing {PROFILE_NAME} Kickstart, a product offered by LexisNexis.') . '</p>';
   $form = array();
   $form['welcome_message'] = array(
     '#markup' => $message,
@@ -370,24 +370,6 @@ function {PROFILE_CODE}_install() {
 
   // Set Mimemail.
   variable_set('mimemail_format', 'full_html');
-  // Configure Chosen.
-  variable_set('chosen_jquery_selector', '.view-filters .views-exposed-form select');
-  variable_set('chosen_minimum', 0);
-  variable_set('chosen_minimum_width', 200);
-  variable_set('chosen_search_contains', TRUE);
-
-  // Create the default Search API server.
-  $values = array(
-    'machine_name' => 'frontend',
-    'name' => 'Frontend',
-    'description' => '',
-    'class' => 'search_api_db_service',
-    'options' => array(
-      'database' => 'default:default',
-      'min_chars' => 3,
-    ),
-  );
-  search_api_server_insert($values);
 
   // Enable automatic title replacement for node bundles.
   foreach (array('node') as $entity_type) {
