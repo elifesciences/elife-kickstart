@@ -136,7 +136,7 @@ fi
 # Prepare the install profile.
 if [ "${PROFILE_NAME}" != "x" ]; then
   . ${DIR}/build_profile.sh "${PROFILE_NAME}" "${PROFILE_CODE}"
-  . ${DIR}/build_controller.sh "${PROFILE_NAME}" "${PROFILE_CODE}" "tmp/modules/custom"
+  . ${DIR}/build_controller.sh "${PROFILE_NAME}" "${PROFILE_CODE}"
 fi
 
 # Build the distribution and copy the profile in place.
