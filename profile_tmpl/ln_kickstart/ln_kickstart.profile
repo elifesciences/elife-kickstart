@@ -42,10 +42,10 @@ function {PROFILE_CODE}_form_install_configure_form_alter(&$form, $form_state) {
   // Set a default name for the dev site and change title's label.
   $form['site_information']['site_name']['#title'] = 'Site name';
   $form['site_information']['site_mail']['#title'] = 'Site email address';
-  $form['site_information']['site_name']['#default_value'] = st('LN Kickstart');
+  $form['site_information']['site_name']['#default_value'] = st('{PROFILE_NAME} Kickstart');
 
   // Set a default country so we can benefit from it on Address Fields.
-  $form['server_settings']['site_default_country']['#default_value'] = 'US';
+  $form['server_settings']['site_default_country']['#default_value'] = 'GB';
 
   // Use "admin" as the default username.
   $form['admin_account']['account']['name']['#default_value'] = 'admin';
@@ -206,7 +206,7 @@ function {PROFILE_CODE}_update_status_alter(&$projects) {
 /**
  * Implements hook_form_FORM_ID_alter().
  *
- * Disable the update for LN Kickstart.
+ * Disable the update for {PROFILE_NAME} Kickstart.
  */
 function {PROFILE_CODE}_form_update_manager_update_form_alter(&$form, &$form_state, $form_id) {
   if (isset($form['projects']['#options']) && isset($form['projects']['#options']['{PROFILE_CODE}'])) {
