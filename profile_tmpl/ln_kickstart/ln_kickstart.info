@@ -17,7 +17,7 @@ dependencies[] = path
 dependencies[] = taxonomy
 dependencies[] = field_ui
 dependencies[] = file
-dependencies[] = toolbar
+;dependencies[] = toolbar
 
 ; Install devel modules.
 dependencies[] = dblog
