@@ -138,6 +138,8 @@ projects[search_api][subdir] = "contrib"
 ; features 1.0-beta4 to 1.0-rc1
 projects[search_api_db][version] = 1.0-beta4
 projects[search_api_db][subdir] = "contrib"
+projects[search_api_ranges][version] = 1.4
+projects[search_api_ranges][subdir] = "contrib"
 
 ; dev modules
 projects[context_nopremium][version] = 1.x-dev
