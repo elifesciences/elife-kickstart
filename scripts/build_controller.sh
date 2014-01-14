@@ -25,20 +25,20 @@ if [ -d $MODULE_DIR ]; then
   mkdir -p $MODULE_DIR
 fi
 
-if [ -d controller_tmpl ] && [ -d controller_tmpl/ln_controller ]; then
+if [ -d controller_tmpl ] && [ -d controller_tmpl/elife_controller ]; then
 
   rm -rf controller_tmp
   cp -r controller_tmpl controller_tmp
 
-  for ln_module in 'deploy_content' 'controller'
+  for elife_module in 'deploy_content' 'controller'
   do
-    if [ ! -d sites_all/modules/custom/${PROFILE_CODE}_${ln_module} ]; then
-      echo "Preparing ${ln_module} module for ${PROFILE_CODE}_kickstart..."
-      cd controller_tmp/ln_${ln_module}
+    if [ ! -d sites_all/modules/custom/${PROFILE_CODE}_${elife_module} ]; then
+      echo "Preparing ${elife_module} module for ${PROFILE_CODE}_kickstart..."
+      cd controller_tmp/elife_${elife_module}
 
-      for file in ln_*
+      for file in elife_*
       do
-        mv "$file" "${PROFILE_CODE}_${file#ln_}"
+        mv "$file" "${PROFILE_CODE}_${file#elife_}"
       done
 
       for file in *
@@ -49,28 +49,28 @@ if [ -d controller_tmpl ] && [ -d controller_tmpl/ln_controller ]; then
 
       cd ../..
 
-      echo "Creating ${ln_module} module for ${PROFILE_CODE}_kickstart..."
-      mv controller_tmp/ln_${ln_module} $MODULE_DIR/${PROFILE_CODE}_${ln_module}
+      echo "Creating ${elife_module} module for ${PROFILE_CODE}_kickstart..."
+      mv controller_tmp/elife_${elife_module} $MODULE_DIR/${PROFILE_CODE}_${elife_module}
 
       echo $PROFILE_INFO
       if [ -f $PROFILE_INFO ]; then
-        DEPENDENCY=`grep -n "^[ ]*dependencies[ ]*\[\][ ]*=[ ]*${PROFILE_CODE}_${ln_module}[ ]*$" $PROFILE_INFO | cut -f1 -d: | head -n 1`
+        DEPENDENCY=`grep -n "^[ ]*dependencies[ ]*\[\][ ]*=[ ]*${PROFILE_CODE}_${elife_module}[ ]*$" $PROFILE_INFO | cut -f1 -d: | head -n 1`
         if [ ! $DEPENDENCY ]; then
-        # look for marker to insert the ${ln_module} module dependency
-          DEPENDENCY_MARKER=`grep -n "^[ ]*\;[ ]*Install ${ln_module} module[ ]*$" $PROFILE_INFO | cut -f1 -d: | head -n 1`
-          DEPENDENCY_TEXT="dependencies[] = ${PROFILE_CODE}_${ln_module}"
+        # look for marker to insert the ${elife_module} module dependency
+          DEPENDENCY_MARKER=`grep -n "^[ ]*\;[ ]*Install ${elife_module} module[ ]*$" $PROFILE_INFO | cut -f1 -d: | head -n 1`
+          DEPENDENCY_TEXT="dependencies[] = ${PROFILE_CODE}_${elife_module}"
           if [ $DEPENDENCY_MARKER ]; then
             echo "hey hey"
             DEPENDENCY_LINE=$(($DEPENDENCY_MARKER+1))
             sed -i "" ''$DEPENDENCY_LINE'i\'$'\n'''$DEPENDENCY_TEXT''$'\n''' "$PROFILE_INFO"
           else
-            echo "add dependency for ${PROFILE_CODE}_${ln_module}"
+            echo "add dependency for ${PROFILE_CODE}_${elife_module}"
             echo >> $PROFILE_INFO
             echo >> $PROFILE_INFO
-            echo "; Install ${ln_module} module" >> $PROFILE_INFO
+            echo "; Install ${elife_module} module" >> $PROFILE_INFO
             echo $DEPENDENCY_TEXT >> $PROFILE_INFO
           fi
-          echo "Dependency for ${ln_module} module inserted in ${PROFILE_INFO}"
+          echo "Dependency for ${elife_module} module inserted in ${PROFILE_INFO}"
         fi
       fi
     fi

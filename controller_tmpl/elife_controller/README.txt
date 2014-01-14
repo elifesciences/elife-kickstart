@@ -1,7 +1,7 @@
-NLJ Controller Module
+eLife Controller Module
 =====================
 
-By Nathan Lisgo for LexisNexis
+By Nathan Lisgo for eLife
 nathan@aeopus.com
 
 =====================

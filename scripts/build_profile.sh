@@ -18,18 +18,18 @@ PROFILE_NAME=${1:-${profile_name_def}}
 profile_code_def=$( codeprepare "${PROFILE_NAME}" )
 PROFILE_CODE=${2:-${profile_code_def}}
 
-if [ -d profile_tmpl ] && [ -d profile_tmpl/ln_kickstart ]; then
+if [ -d profile_tmpl ] && [ -d profile_tmpl/elife_kickstart ]; then
   echo "Preparing install profile ${PROFILE_CODE}_kickstart..."
   if [ ! -d profiles ]; then
     mkdir profiles
   fi
   rm -rf profile_tmp
   cp -r profile_tmpl profile_tmp
-  cd profile_tmp/ln_kickstart
+  cd profile_tmp/elife_kickstart
 
-  for file in ln_*
+  for file in elife_*
   do
-    mv "$file" "${PROFILE_CODE}_${file#ln_}"
+    mv "$file" "${PROFILE_CODE}_${file#elife_}"
   done
 
   # now do search and replace in all files for {PROFILE_NAME} and {PROFILE_CODE}
@@ -43,7 +43,7 @@ if [ -d profile_tmpl ] && [ -d profile_tmpl/ln_kickstart ]; then
   rm -rf ../profiles/${PROFILE_CODE}_kickstart
   echo "Creating install profile ${PROFILE_CODE}_kickstart..."
   rm -rf profiles/${PROFILE_CODE}_kickstart
-  mv ln_kickstart ../profiles/${PROFILE_CODE}_kickstart
+  mv elife_kickstart ../profiles/${PROFILE_CODE}_kickstart
   cd ..
   rm -rf profile_tmp
 fi
