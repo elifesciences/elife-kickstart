@@ -43,8 +43,6 @@ dependencies[] = date_migrate
 ; Install contribs.
 dependencies[] = ctools
 dependencies[] = context_nopremium
-dependencies[] = dfp
-dependencies[] = dfp_ad_blocks
 dependencies[] = ds
 dependencies[] = ds_extras
 dependencies[] = ds_format
