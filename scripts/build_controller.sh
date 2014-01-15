@@ -45,8 +45,8 @@ if [ -d controller_tmpl ] && [ -d controller_tmpl/elife_controller ]; then
 
       for file in *
       do
-        sed -i "" "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "$file"
-        sed -i "" "s/{PROFILE_CODE}/${PROFILE_CODE}/g" "$file"
+        sed -i "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "$file"
+        sed -i "s/{PROFILE_CODE}/${PROFILE_CODE}/g" "$file"
       done
 
       cd ../..
@@ -64,7 +64,7 @@ if [ -d controller_tmpl ] && [ -d controller_tmpl/elife_controller ]; then
           if [ $DEPENDENCY_MARKER ]; then
             echo "hey hey"
             DEPENDENCY_LINE=$(($DEPENDENCY_MARKER+1))
-            sed -i "" ''$DEPENDENCY_LINE'i\'$'\n'''$DEPENDENCY_TEXT''$'\n''' "$PROFILE_INFO"
+            sed -i ''$DEPENDENCY_LINE'i\'$'\n'''$DEPENDENCY_TEXT''$'\n''' "$PROFILE_INFO"
           else
             echo "add dependency for ${PROFILE_CODE}_${elife_module}"
             echo >> $PROFILE_INFO
