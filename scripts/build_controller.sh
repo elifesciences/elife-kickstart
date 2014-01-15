@@ -38,7 +38,9 @@ if [ -d controller_tmpl ] && [ -d controller_tmpl/elife_controller ]; then
 
       for file in elife_*
       do
-        mv "$file" "${PROFILE_CODE}_${file#elife_}"
+        if [ ! -f "$file" "${PROFILE_CODE}_${file#elife_}" ]; then
+          mv "$file" "${PROFILE_CODE}_${file#elife_}"
+        fi
       done
 
       for file in *

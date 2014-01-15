@@ -29,7 +29,9 @@ if [ -d profile_tmpl ] && [ -d profile_tmpl/elife_kickstart ]; then
 
   for file in elife_*
   do
-    mv "$file" "${PROFILE_CODE}_${file#elife_}"
+    if [ ! -f "${PROFILE_CODE}_${file#elife_}" ]; then
+      mv "$file" "${PROFILE_CODE}_${file#elife_}"
+    fi
   done
 
   # now do search and replace in all files for {PROFILE_NAME} and {PROFILE_CODE}
