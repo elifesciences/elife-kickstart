@@ -1,8 +1,8 @@
 @home
 Feature: Homepage
-  In order to have a website
-  As a website user
-  I should be able to see the homepage
+  In order to verify success at installing the web site
+  As an anonymous user
+  I want to go to the home page without errors
 
   Scenario: View the homepage
     When I am on the homepage
