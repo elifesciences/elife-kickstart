@@ -32,12 +32,12 @@ install:
 before_script:
 
   # Install Kickstart Profile
-  - ./scripts/build.sh kickstart "eLife" "elife"
+  - ./scripts/build.sh kickstart "Template" "tmpl"
   - cd kickstart
   - sudo chmod -R 777 sites/all
   - mkdir -p sites/default/files
   - sudo chmod -R 777 sites/default/files
-  - php -d sendmail_path=`which true` `pear config-get php_dir`/drush/drush.php  si elife_kickstart --sites-subdir=default --db-url=mysql://root:@127.0.0.1/kickstart --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="eLife Kickstart Profile" --yes
+  - php -d sendmail_path=`which true` `pear config-get php_dir`/drush/drush.php  si tmpl_kickstart --sites-subdir=default --db-url=mysql://root:@127.0.0.1/kickstart --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="Template Kickstart Profile" --yes
   - drush cc all --yes
   - cd ../
 
