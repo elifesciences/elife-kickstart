@@ -114,6 +114,7 @@ projects[search_api_ranges][subdir] = "contrib"
 projects[redirect][version] = 1.0-rc1
 projects[redirect][subdir] = "patched_contrib"
 projects[redirect][patch][] = "https://drupal.org/files/redirect-detect_prevent_circular_redirects_remove_duplicate_redirects_on_path_save-1817976-20.patch"
+projects[redirect][patch][] = "https://drupal.org/files/redirect-migrate-support-1116408-69.patch"
 
 ; Libraries.
 libraries[colorbox][type] = "libraries"
