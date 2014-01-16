@@ -36,17 +36,17 @@ if [ -d controller_tmpl ] && [ -d controller_tmpl/tmpl_controller ]; then
       echo "Preparing ${tmpl_module} module for ${PROFILE_CODE}_kickstart..."
       cd controller_tmp/tmpl_${tmpl_module}
 
-      for file in tmpl_*
-      do
-        if [ ! -f "$file" "${PROFILE_CODE}_${file#tmpl_}" ]; then
-          mv "$file" "${PROFILE_CODE}_${file#tmpl_}"
-        fi
-      done
-
       for file in *
       do
         sed -i "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "$file"
         sed -i "s/{PROFILE_CODE}/${PROFILE_CODE}/g" "$file"
+      done
+
+      for file in tmpl_*
+      do
+        if [ ! -f "${PROFILE_CODE}_${file#tmpl_}" ]; then
+          mv "$file" "${PROFILE_CODE}_${file#tmpl_}"
+        fi
       done
 
       cd ../..

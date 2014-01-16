@@ -27,18 +27,18 @@ if [ -d profile_tmpl ] && [ -d profile_tmpl/tmpl_kickstart ]; then
   cp -r profile_tmpl profile_tmp
   cd profile_tmp/tmpl_kickstart
 
-  for file in tmpl_*
-  do
-    if [ ! -f "${PROFILE_CODE}_${file#tmpl_}" ]; then
-      mv "$file" "${PROFILE_CODE}_${file#tmpl_}"
-    fi
-  done
-
   # now do search and replace in all files for {PROFILE_NAME} and {PROFILE_CODE}
   for file in *
   do
     sed -i "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "$file"
     sed -i "s/{PROFILE_CODE}/${PROFILE_CODE}_kickstart/g" "$file"
+  done
+
+  for file in tmpl_*
+  do
+    if [ ! -f "${PROFILE_CODE}_${file#tmpl_}" ]; then
+      mv "$file" "${PROFILE_CODE}_${file#tmpl_}"
+    fi
   done
 
   cd ..
