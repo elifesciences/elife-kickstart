@@ -30,8 +30,8 @@ if [ -d profile_tmpl ] && [ -d profile_tmpl/tmpl_kickstart ]; then
   # now do search and replace in all files for {PROFILE_NAME} and {PROFILE_CODE}
   for file in *
   do
-    sed -i "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "$file"
-    sed -i "s/{PROFILE_CODE}/${PROFILE_CODE}_kickstart/g" "$file"
+    sed -e "s?{PROFILE_NAME}?${PROFILE_NAME}?g" --in-place "$file"
+    sed -e "s?{PROFILE_CODE}?${PROFILE_CODE}_kickstart?g" --in-place "$file"
   done
 
   for file in tmpl_*

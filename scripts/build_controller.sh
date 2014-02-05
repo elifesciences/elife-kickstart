@@ -38,8 +38,8 @@ if [ -d controller_tmpl ] && [ -d controller_tmpl/tmpl_controller ]; then
 
       for file in *
       do
-        sed -i "s/{PROFILE_NAME}/${PROFILE_NAME}/g" "$file"
-        sed -i "s/{PROFILE_CODE}/${PROFILE_CODE}/g" "$file"
+        sed -e "s?{PROFILE_NAME}?${PROFILE_NAME}?g" --in-place "$file"
+        sed -e "s?{PROFILE_CODE}?${PROFILE_CODE}?g" --in-place "$file"
       done
 
       for file in tmpl_*
@@ -58,19 +58,12 @@ if [ -d controller_tmpl ] && [ -d controller_tmpl/tmpl_controller ]; then
       if [ -f $PROFILE_INFO ]; then
         DEPENDENCY=`grep -n "^[ ]*dependencies[ ]*\[\][ ]*=[ ]*${PROFILE_CODE}_${tmpl_module}[ ]*$" $PROFILE_INFO | cut -f1 -d: | head -n 1`
         if [ ! $DEPENDENCY ]; then
-        # look for marker to insert the ${tmpl_module} module dependency
-          DEPENDENCY_MARKER=`grep -n "^[ ]*\;[ ]*Install ${tmpl_module} module[ ]*$" $PROFILE_INFO | cut -f1 -d: | head -n 1`
           DEPENDENCY_TEXT="dependencies[] = ${PROFILE_CODE}_${tmpl_module}"
-          if [ $DEPENDENCY_MARKER ]; then
-            DEPENDENCY_LINE=$(($DEPENDENCY_MARKER+1))
-            sed -i ''$DEPENDENCY_LINE'i\'$'\n'''$DEPENDENCY_TEXT''$'\n''' "$PROFILE_INFO"
-          else
-            echo "add dependency for ${PROFILE_CODE}_${tmpl_module}"
-            echo >> $PROFILE_INFO
-            echo >> $PROFILE_INFO
-            echo "; Install ${tmpl_module} module" >> $PROFILE_INFO
-            echo $DEPENDENCY_TEXT >> $PROFILE_INFO
-          fi
+          echo "add dependency for ${PROFILE_CODE}_${tmpl_module}"
+          echo >> $PROFILE_INFO
+          echo >> $PROFILE_INFO
+          echo "; Install ${tmpl_module} module" >> $PROFILE_INFO
+          echo $DEPENDENCY_TEXT >> $PROFILE_INFO
           echo "Dependency for ${tmpl_module} module inserted in ${PROFILE_INFO}"
         fi
       fi
