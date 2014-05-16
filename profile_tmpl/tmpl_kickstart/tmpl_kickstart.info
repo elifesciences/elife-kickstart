@@ -6,7 +6,7 @@ exclusive = 1
 
 ; Install necessary core modules.
 dependencies[] = block
-dependencies[] = comment
+;dependencies[] = comment
 dependencies[] = contextual
 dependencies[] = image
 dependencies[] = list
@@ -17,42 +17,28 @@ dependencies[] = path
 dependencies[] = taxonomy
 dependencies[] = field_ui
 dependencies[] = file
-;dependencies[] = toolbar
+dependencies[] = toolbar
 
 ; Install devel modules.
 dependencies[] = dblog
 dependencies[] = rules_admin
 dependencies[] = views_ui
 dependencies[] = devel
-dependencies[] = admin_menu
-dependencies[] = admin_menu_toolbar
 dependencies[] = context_ui
-dependencies[] = environment_indicator
-dependencies[] = hacked
-dependencies[] = ds_ui
-dependencies[] = diff
-dependencies[] = styleguide
 dependencies[] = delta_ui
 
 ; Install Migrate
 dependencies[] = migrate
 dependencies[] = migrate_extras
-dependencies[] = migrate_d2d
 dependencies[] = date_migrate
 
 ; Install contribs.
 dependencies[] = ctools
-dependencies[] = context_nopremium
-dependencies[] = ds
-dependencies[] = ds_extras
-dependencies[] = ds_format
-dependencies[] = fcf
 dependencies[] = date
 dependencies[] = date_api
 dependencies[] = date_popup
 dependencies[] = date_views
 dependencies[] = context
-dependencies[] = context_condition_theme
 dependencies[] = entity
 dependencies[] = entity_token
 dependencies[] = token
@@ -66,48 +52,22 @@ dependencies[] = entityreference
 dependencies[] = menu_attributes
 dependencies[] = imce
 dependencies[] = metatag
-dependencies[] = boxes
-dependencies[] = colorbox
-dependencies[] = elysia_cron
 dependencies[] = menu_token
 dependencies[] = clone
-dependencies[] = nopremium
-dependencies[] = publication_date
-dependencies[] = realname
 dependencies[] = redirect
-dependencies[] = resp_img
 dependencies[] = scheduler
 dependencies[] = special_menu_items
 dependencies[] = globalredirect
-dependencies[] = addthis
-dependencies[] = addthis_displays
-dependencies[] = captcha
 dependencies[] = googleanalytics
 dependencies[] = delta
 dependencies[] = ckeditor
 dependencies[] = views_field_view
-dependencies[] = views_slideshow
-dependencies[] = views_slideshow_cycle
 dependencies[] = webform
-dependencies[] = webform_rules
-dependencies[] = webform_validation
 dependencies[] = xmlsitemap
 dependencies[] = strongarm
 
-; Install sandbox modules.
-dependencies[] = webform_validate_unique_user_email
-
 ; Install Features
 dependencies[] = features
-
-; Install Search API
-dependencies[] = facetapi
-dependencies[] = facetapi_bonus
-dependencies[] = search_api
-dependencies[] = search_api_db
-dependencies[] = search_api_views
-dependencies[] = search_api_facetapi
-dependencies[] = search_api_ranges
 
 ; Distribution modules.
 

@@ -1,4 +1,4 @@
-eLife Controller Module
+{PROFILE_NAME} Controller Module
 =====================
 
 By Nathan Lisgo for eLife

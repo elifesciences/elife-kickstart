@@ -142,6 +142,7 @@ fi
 # Build the distribution and copy the profile in place.
 echo "Building the distribution..."
 drush make drupal-org-core.make $TEMP_BUILD
+
 echo -n "Moving to destination... "
 cp -r tmp/* $TEMP_BUILD/sites/all
 rm -rf tmp
@@ -152,5 +153,11 @@ if [ -d profiles ]; then
     rm -rf profiles
   fi
 fi
+
+# Prepare .travis.yml
+cp $TEMP_BUILD/sites/all/tests/build/travis-ci-yml $TEMP_BUILD/.travis.yml
+sed -e "s?%KICKSTART_PROFILE_CODE%?${PROFILE_CODE}?g" --in-place $TEMP_BUILD/.travis.yml
+sed -e "s?%KICKSTART_PROFILE_NAME%?${PROFILE_NAME}?g" --in-place $TEMP_BUILD/.travis.yml
+
 mv $TEMP_BUILD $DESTINATION
 echo "done"
