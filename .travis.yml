@@ -19,7 +19,7 @@ install:
   - composer global require --no-interaction drush/drush:6.*
 
   - ./scripts/build.sh kickstart "Template" "tmpl"
-  - cd kickstart
+  - cd ./kickstart
 
   # Build Behat dependencies
   - cd ./sites/all/tests/behat
@@ -53,9 +53,9 @@ before_script:
   # Make the Travis tests repos agnostic by injecting drupal_root with BEHAT_PARAMS
   - export BEHAT_PARAMS="extensions[Drupal\DrupalExtension\Extension][drupal][drupal_root]=$TRAVIS_BUILD_DIR/kickstart"
 
-  - cd sites/all/tests/behat
+  - cd ./sites/all/tests/behat
 
 script:
 
   # Run behat tests
-  ./bin/behat --config behat.travis.yml --tags='~@develop'
+  - ./bin/behat --config behat.travis.yml --tags='~@develop'
