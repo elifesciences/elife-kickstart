@@ -42,7 +42,7 @@ function {PROFILE_CODE}_form_install_configure_form_alter(&$form, $form_state) {
   // Set a default name for the dev site and change title's label.
   $form['site_information']['site_name']['#title'] = 'Site name';
   $form['site_information']['site_mail']['#title'] = 'Site email address';
-  $form['site_information']['site_name']['#default_value'] = st('{PROFILE_NAME} Kickstart');
+  $form['site_information']['site_name']['#default_value'] = st('{PROFILE_NAME}');
 
   // Set a default country so we can benefit from it on Address Fields.
   $form['server_settings']['site_default_country']['#default_value'] = 'GB';
@@ -143,7 +143,6 @@ function {PROFILE_CODE}_system_info_alter(&$info, $file, $type) {
  * Implements hook_update_projects_alter().
  */
 function {PROFILE_CODE}_update_projects_alter(&$projects) {
-  // Enable update status for the Commerce Kickstart profile.
   $modules = system_rebuild_module_data();
   // The module object is shared in the request, so we need to clone it here.
   $kickstart = clone $modules['{PROFILE_CODE}'];

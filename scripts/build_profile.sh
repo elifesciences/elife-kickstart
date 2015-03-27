@@ -19,7 +19,7 @@ profile_code_def=$( codeprepare "${PROFILE_NAME}" )
 PROFILE_CODE=${2:-${profile_code_def}}
 
 if [ -d profile_tmpl ] && [ -d profile_tmpl/tmpl_kickstart ]; then
-  echo "Preparing install profile ${PROFILE_CODE}_kickstart..."
+  echo "Preparing install profile ${PROFILE_CODE}..."
   if [ ! -d profiles ]; then
     mkdir profiles
   fi
@@ -31,21 +31,21 @@ if [ -d profile_tmpl ] && [ -d profile_tmpl/tmpl_kickstart ]; then
   for file in *
   do
     sed -e "s?{PROFILE_NAME}?${PROFILE_NAME}?g" --in-place "$file"
-    sed -e "s?{PROFILE_CODE}?${PROFILE_CODE}_kickstart?g" --in-place "$file"
+    sed -e "s?{PROFILE_CODE}?${PROFILE_CODE}?g" --in-place "$file"
   done
 
   for file in tmpl_*
   do
-    if [ ! -f "${PROFILE_CODE}_${file#tmpl_}" ]; then
-      mv "$file" "${PROFILE_CODE}_${file#tmpl_}"
+    if [ ! -f "${PROFILE_CODE}${file#tmpl_kickstart}" ]; then
+      mv "$file" "${PROFILE_CODE}${file#tmpl_kickstart}"
     fi
   done
 
   cd ..
-  rm -rf ../profiles/${PROFILE_CODE}_kickstart
-  echo "Creating install profile ${PROFILE_CODE}_kickstart..."
-  rm -rf profiles/${PROFILE_CODE}_kickstart
-  mv tmpl_kickstart ../profiles/${PROFILE_CODE}_kickstart
+  rm -rf ../profiles/${PROFILE_CODE}
+  echo "Creating install profile ${PROFILE_CODE}..."
+  rm -rf profiles/${PROFILE_CODE}
+  mv tmpl_kickstart ../profiles/${PROFILE_CODE}
   cd ..
   rm -rf profile_tmp
 fi

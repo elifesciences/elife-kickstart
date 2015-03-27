@@ -148,7 +148,7 @@ cp -r tmp/* $TEMP_BUILD/sites/all
 rm -rf tmp
 if [ -d profiles ]; then
   cp -r profiles/* $TEMP_BUILD/profiles
-  rm -rf profiles/${PROFILE_CODE}_kickstart
+  rm -rf profiles/${PROFILE_CODE}
   if [ $profiles_folder == false ]; then
     rm -rf profiles
   fi

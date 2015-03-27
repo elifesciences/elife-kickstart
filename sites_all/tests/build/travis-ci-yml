@@ -42,7 +42,7 @@ install:
 before_script:
 
   # Install Profile
-  - drush si %KICKSTART_PROFILE_CODE%_kickstart --sites-subdir=default --db-url=mysql://root:@127.0.0.1/%KICKSTART_PROFILE_CODE% --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="%KICKSTART_PROFILE_NAME% Install Profile" --yes
+  - drush si %KICKSTART_PROFILE_CODE% --sites-subdir=default --db-url=mysql://root:@127.0.0.1/%KICKSTART_PROFILE_CODE% --account-name=admin --account-pass=admin --site-mail=admin@example.com --site-name="%KICKSTART_PROFILE_NAME% Install Profile" --yes
   - drush updatedb -y || true
   - drush cc all --yes
   - drush runserver --server=builtin 8888 > /dev/null 2>&1 &
