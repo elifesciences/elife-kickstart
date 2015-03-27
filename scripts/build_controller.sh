@@ -17,8 +17,8 @@ PROFILE_NAME=${1:-${profile_name_def}}
 
 profile_code_def=$( codeprepare "${PROFILE_NAME}" )
 PROFILE_CODE=${2:-${profile_code_def}}
-PROFILE_DIR=${3:-profiles/${PROFILE_CODE}_kickstart}
-PROFILE_INFO=${PROFILE_DIR}/${PROFILE_CODE}_kickstart.info
+PROFILE_DIR=${3:-profiles/${PROFILE_CODE}}
+PROFILE_INFO=${PROFILE_DIR}/${PROFILE_CODE}.info
 MODULE_DIR=${4:-tmp/modules/custom}
 
 if [ -d $MODULE_DIR ]; then
@@ -33,7 +33,7 @@ if [ -d controller_tmpl ] && [ -d controller_tmpl/tmpl_controller ]; then
   for tmpl_module in 'deploy_content' 'controller'
   do
     if [ ! -d sites_all/modules/custom/${PROFILE_CODE}_${tmpl_module} ]; then
-      echo "Preparing ${tmpl_module} module for ${PROFILE_CODE}_kickstart..."
+      echo "Preparing ${tmpl_module} module for ${PROFILE_CODE}..."
       cd controller_tmp/tmpl_${tmpl_module}
 
       for file in *
@@ -51,7 +51,7 @@ if [ -d controller_tmpl ] && [ -d controller_tmpl/tmpl_controller ]; then
 
       cd ../..
 
-      echo "Creating ${tmpl_module} module for ${PROFILE_CODE}_kickstart..."
+      echo "Creating ${tmpl_module} module for ${PROFILE_CODE}..."
       mv controller_tmp/tmpl_${tmpl_module} $MODULE_DIR/${PROFILE_CODE}_${tmpl_module}
 
       echo $PROFILE_INFO

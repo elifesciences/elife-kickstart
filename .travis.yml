@@ -18,7 +18,7 @@ install:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer global require --no-interaction drush/drush:6.*
 
-  - ./scripts/build.sh kickstart "Template" "tmpl"
+  - ./scripts/build.sh kickstart "Template Kickstart" "tmpl_kickstart"
   - cd ./kickstart
 
   # Build Behat dependencies

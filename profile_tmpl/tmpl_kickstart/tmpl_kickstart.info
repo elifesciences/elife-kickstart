@@ -1,7 +1,7 @@
-name = {PROFILE_NAME} Kickstart
+name = {PROFILE_NAME}
 description = Install with Drupal pre-configured for use.
 core = 7.x
-distribution_name = {PROFILE_NAME} Kickstart
+distribution_name = {PROFILE_NAME}
 exclusive = 1
 
 ; Install necessary core modules.
